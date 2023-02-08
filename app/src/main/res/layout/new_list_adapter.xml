@@ -37,19 +37,28 @@
             android:id="@+id/news_heading_NLA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="sdfsdfafdsasdfs"
+            android:text="@string/dummy_string"
             android:textColor="@color/black"
-            android:textSize="27sp"
+            android:textSize="25sp"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/new_desc_NLA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="sdfsdfafdsasdfs"
+            android:text="@string/dummy_string"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:textColor="@color/black"
             android:textSize="22sp"
             />
+        <TextView
+            android:id="@+id/news_date_NLA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/dummy_string"
+            android:textColor="@color/date_color"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="5dp"

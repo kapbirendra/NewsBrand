@@ -30,6 +30,7 @@ class ApiModules {
     @Singleton
     fun providesDatabase(@ApplicationContext context: Context): RoomOfflineDb =
         Room.databaseBuilder(context, RoomOfflineDb::class.java,"postDatabase")
+
             .fallbackToDestructiveMigration()
             .build()
 

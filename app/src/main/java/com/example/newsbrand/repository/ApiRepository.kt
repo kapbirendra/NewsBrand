@@ -24,6 +24,7 @@ class ApiRepository @Inject constructor(private val newsDao: NewsDao,private val
             }else return
         }else{
             val news = newsDao.getNewsDataForOffline()
+            println("#### ${news[0].author}")
             val newsList = NewsData("1",1,news)
             quotesLiveData.postValue(newsList)
         }

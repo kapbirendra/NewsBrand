@@ -10,6 +10,7 @@
 
     <color name="home_background">#F8F8FB </color>
     <color name="gray_line">#E8E8F7 </color>
+    <color name="date_color">#C1C0BF </color>
 
 
 </resources>

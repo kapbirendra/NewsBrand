@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 
-class InternetCheck {
+class InternetCheck  {
     companion object{
         fun isOnline(context: Context): Boolean {
             val connectivityManager =
