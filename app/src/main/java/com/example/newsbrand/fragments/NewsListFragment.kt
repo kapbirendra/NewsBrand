@@ -33,7 +33,7 @@ class NewsListFragment : Fragment() {
         mainViewModel.publicLivedata.observe(requireActivity()){
             binding.recyclerViewNLF.adapter = NewsListAdapter(it.articles)
             it.articles.forEach {
-                Log.d("shwotheNews",it.title)
+                Log.d("shwotheNews",it.title!!)
             }
         }
     }

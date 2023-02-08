@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val repository: ApiRepository):ViewModel() {
 
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getBreakingNews()

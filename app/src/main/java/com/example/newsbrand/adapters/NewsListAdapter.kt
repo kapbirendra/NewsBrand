@@ -18,7 +18,7 @@ class NewsListAdapter(private val articles: List<Article>) :RecyclerView.Adapter
 
     inner class MyViewHolder():RecyclerView.ViewHolder(binding.root){
         val newsHeading:TextView = binding.newsHeadingNLA
-        val newsDescription:TextView = binding.newsHeadingNLA
+        val newsDescription:TextView = binding.newDescNLA
         val newsImage:ImageView = binding.imageViewNLA
         val clickNewsLayout: ConstraintLayout = binding.layoutNewsListNLA
 
@@ -37,6 +37,7 @@ class NewsListAdapter(private val articles: List<Article>) :RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.newsHeading.text = articles[position].title
+        holder.newsDescription.text = articles[position].description
         Glide.with(context).load(articles[position].urlToImage).into(holder.newsImage)
         holder.clickNewsLayout.setOnClickListener {
             Toast.makeText(context, "${articles[position].title }...", Toast.LENGTH_SHORT).show()
