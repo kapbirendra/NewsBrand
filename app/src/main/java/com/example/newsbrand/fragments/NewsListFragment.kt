@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsbrand.R
 import com.example.newsbrand.adapters.NewsListAdapter
@@ -17,6 +18,7 @@ import com.example.newsbrand.api.NewsOnclick
 import com.example.newsbrand.databinding.FragmentNewsListBinding
 import com.example.newsbrand.viewmodel.MainViewModel
 import com.example.newsbrand.viewmodel.ReadNewsViewModel
+import com.example.newsbrand.viewmodel.SavedFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,6 +27,9 @@ class NewsListFragment : Fragment(), NewsOnclick {
     lateinit var binding: FragmentNewsListBinding
     @Inject
     lateinit var mainViewModel: MainViewModel
+
+    @Inject
+    lateinit var savedFragmentViewModel: SavedFragmentViewModel
 
     lateinit var readNewsViewModel: ReadNewsViewModel
 
@@ -41,8 +46,11 @@ class NewsListFragment : Fragment(), NewsOnclick {
         readNewsViewModel = ViewModelProvider(this)[ReadNewsViewModel::class.java]
         binding.recyclerViewNLF.layoutManager = LinearLayoutManager(requireContext())
         mainViewModel.publicLivedata.observe(requireActivity()){
-            binding.recyclerViewNLF.adapter = NewsListAdapter(it.articles,this)
+            binding.recyclerViewNLF.adapter = NewsListAdapter(it.articles,this,savedFragmentViewModel)
 
+        }
+        binding.saveButtonNLF.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_savedNewsFragment)
         }
 
 
@@ -50,9 +58,9 @@ class NewsListFragment : Fragment(), NewsOnclick {
 
     override fun newClick(position: Int) {
         mainViewModel.publicLivedata.observe(requireActivity()){
-//            Log.d("showonclicked",it.articles[position].title!!)
             readNewsViewModel.setReadData("birendrra")
             Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_readNewsFragment)
+
         }
     }
 }

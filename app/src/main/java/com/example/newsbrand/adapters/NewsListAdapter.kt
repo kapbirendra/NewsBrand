@@ -12,25 +12,32 @@ import com.bumptech.glide.Glide
 import com.example.newsbrand.api.NewsOnclick
 import com.example.newsbrand.databinding.NewListAdapterBinding
 import com.example.newsbrand.response.Article
-import javax.inject.Inject
+import com.example.newsbrand.response.saved_response.SavedArticle
+import com.example.newsbrand.response.saved_response.SourceSaved
+import com.example.newsbrand.viewmodel.SavedFragmentViewModel
 
 class NewsListAdapter (
     private val articles: List<Article>,
-    private val newsOnclick: NewsOnclick
+    private val newsOnclick: NewsOnclick,
+    private val savedFragmentViewModel: SavedFragmentViewModel
 ) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>() {
     lateinit var binding: NewListAdapterBinding
     private lateinit var context: Context
+
+
 
     inner class MyViewHolder() : RecyclerView.ViewHolder(binding.root) {
         val newsHeading: TextView = binding.newsHeadingNLA
         val newsDescription: TextView = binding.newDescNLA
         val newsDate: TextView = binding.newsDateNLA
         val newsImage: ImageView = binding.imageViewNLA
+        val notSavedBookMark: ImageView = binding.notSavedBookmark
         val clickNewsLayout: ConstraintLayout = binding.layoutNewsListNLA
         init {
             binding.root.setOnClickListener {
                 newsOnclick.newClick(adapterPosition)
             }
+
         }
 
     }
@@ -48,13 +55,18 @@ class NewsListAdapter (
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.newsHeading.text = articles[position].title
+        val artPosition = articles[position]
         holder.newsDescription.text = articles[position].description
         holder.newsDate.text = articles[position].publishedAt!!.substring(0, 10)
         Glide.with(context).load(articles[position].urlToImage).into(holder.newsImage)
-//        holder.clickNewsLayout.setOnClickListener {
-//            newsClickListener.onClickListener(articles[position])
-////            Toast.makeText(context, "${articles[position].title}...", Toast.LENGTH_SHORT).show()
-//        }
+        holder.notSavedBookMark.setOnClickListener {
+            val dummysoucrce = SourceSaved("","")
+            val dummyData = SavedArticle(artPosition.id,artPosition.author,artPosition.content,artPosition.description,artPosition.title,dummysoucrce,"",
+            "","")
+            savedFragmentViewModel.addArticlesFromVm(dummyData)
+            Toast.makeText(context, "data saved..", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 
