@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.newsbrand.databinding.ActivityMainBinding
 import com.example.newsbrand.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,11 +24,5 @@ lateinit var binding: ActivityMainBinding
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment2, Fragment())
 
-//        mainViewModel.publicLivedata.observe(this){
-//            it.articles.forEach {
-//                Log.d("shwotheNews",it.title)
-//            }
-//
-//        }
     }
 }

@@ -6,6 +6,7 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.newsbrand.api.ApiService
+import com.example.newsbrand.fragments.NewsListFragment
 import com.example.newsbrand.repository.ApiRepository
 import com.example.newsbrand.rooms.NewsDao
 import com.example.newsbrand.rooms.RoomOfflineDb
@@ -24,7 +25,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ApiModules {
-
 
     @Provides
     @Singleton
@@ -54,4 +54,7 @@ class ApiModules {
     @Provides
     @Singleton
     fun provideRepository(@ApplicationContext context: Context,apiService: ApiService,newsDao: NewsDao): ApiRepository  = ApiRepository(newsDao,apiService,context)
+
+//    @Provides
+//    fun newOnclicked():
 }

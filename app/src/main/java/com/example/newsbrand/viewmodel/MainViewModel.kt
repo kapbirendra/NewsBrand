@@ -24,4 +24,6 @@ class MainViewModel @Inject constructor(private val repository: ApiRepository):V
     }
     val publicLivedata: LiveData<NewsData>
         get() = repository.quoteLiveFromRepository
+
+    //this is not working
 }
