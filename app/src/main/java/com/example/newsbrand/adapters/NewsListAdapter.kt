@@ -57,17 +57,19 @@ class NewsListAdapter (
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.newsHeading.text = articleTemp[position].title
-        val artPosition = articles[position]
         holder.newsDescription.text = articleTemp[position].description
         holder.newsDate.text = articleTemp[position].publishedAt!!.substring(0, 10)
         Glide.with(context).load(articleTemp[position].urlToImage).into(holder.newsImage)
-        holder.notSavedBookMark.setOnClickListener {
-//            val dummysoucrce = SourceSaved("","")
-//            val dummyData = SavedArticle(artPosition.id,artPosition.author,artPosition.content,artPosition.description,artPosition.title,dummysoucrce,"",
-//            "","")
 
-//            savedFragmentViewModel.addArticlesFromVm(articles[position])
-            Toast.makeText(context, "$", Toast.LENGTH_SHORT).show()
+        val artPosition = articles[position]
+        val dummySource = SourceSaved(artPosition.source.id,artPosition.source.name)
+        val dummyData = SavedArticle(artPosition.id,artPosition.author,artPosition.content,artPosition.description,artPosition.publishedAt
+            ,dummySource,artPosition.title,artPosition.url,artPosition.urlToImage)
+
+        holder.notSavedBookMark.setOnClickListener {
+
+                savedFragmentViewModel.addArticlesFromVm(dummyData)
+                Toast.makeText(context, "added..", Toast.LENGTH_SHORT).show()
         }
 
     }

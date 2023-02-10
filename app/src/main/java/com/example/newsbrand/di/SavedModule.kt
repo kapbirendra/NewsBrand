@@ -24,6 +24,7 @@ class SavedModule {
     @Singleton
     fun provideSaveDatabase(@ApplicationContext context: Context): SavedArticleDb =
         Room.databaseBuilder(context,SavedArticleDb::class.java,"saved_table")
+            .fallbackToDestructiveMigration()
             .build()
 
     @Provides

@@ -20,5 +20,11 @@ class SavedArticleRepository @Inject constructor (private val savedDao: SavedDao
     suspend fun deleteArticle(saved: SavedArticle){
         savedDao.deleteNews(saved)
     }
+    suspend fun deleteAllArticle(){
+        savedDao.deleteAll()
+    }
+    suspend fun updateSavedNews(saved: SavedArticle){
+        savedDao.updateSavedNews(saved)
+    }
 
 }

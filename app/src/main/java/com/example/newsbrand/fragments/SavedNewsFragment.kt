@@ -5,19 +5,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 
-import com.example.newsbrand.R
+import com.example.newsbrand.adapters.SavedNewsAdapter
+import com.example.newsbrand.databinding.FragmentSavedNewsBinding
+import com.example.newsbrand.viewmodel.SavedFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class SavedNewsFragment : Fragment() {
 
+    lateinit var adapter: SavedNewsAdapter
+
+    lateinit var binding:FragmentSavedNewsBinding
+    @Inject
+    lateinit var savedNewsFragmentViewModel: SavedFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_news, container, false)
+        binding = FragmentSavedNewsBinding.inflate(layoutInflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.recyclerViewSF.layoutManager = LinearLayoutManager(requireContext())
+        savedNewsFragmentViewModel.readSavedArticleFromVm().observe(requireActivity()){
+            adapter = SavedNewsAdapter(it,requireContext())
+            binding.recyclerViewSF.adapter = adapter
+        }
+
     }
 
 

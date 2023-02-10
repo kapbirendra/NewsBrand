@@ -1,9 +1,10 @@
 package com.example.newsbrand.response.saved_response
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "saved_table")
+@Entity(tableName = "saved_table",indices =  [Index(value = ["id"], unique = true)])
 data class SavedArticle(
     @PrimaryKey(autoGenerate = true)
     val id:Int = 0,

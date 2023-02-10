@@ -71,11 +71,7 @@ class NewsListFragment : Fragment(), NewsOnclick {
     }
 
     override fun newClick(position: Int) {
-//        mainViewModel.publicLivedata.observe(requireActivity()){
-//            readNewsViewModel.setReadData(position)
-//            Toast.makeText(requireContext(), "$position", Toast.LENGTH_SHORT).show()
-////            findNavController().navigate(R.id.action_newsListFragment_to_readNewsFragment)
-//        }
+
         val bundle = Bundle()
         bundle.putInt("position",position)
         Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_readNewsFragment,bundle)
