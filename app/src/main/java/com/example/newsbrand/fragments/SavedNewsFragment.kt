@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -35,11 +38,36 @@ class SavedNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.recyclerViewSF.layoutManager = LinearLayoutManager(requireContext())
         savedNewsFragmentViewModel.readSavedArticleFromVm().observe(requireActivity()){
-            adapter = SavedNewsAdapter(it,requireContext())
+            adapter = SavedNewsAdapter(it,requireContext() )
             binding.recyclerViewSF.adapter = adapter
         }
 
+        binding.backButtonSF.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+        binding.searchNewsSF.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+        })
+
     }
 
+    private fun setUpBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(false){
+            override fun handleOnBackPressed() {
+                if (isEnabled){
+                    Toast.makeText(requireContext(),    "go back....", Toast.LENGTH_SHORT).show()
+                    isEnabled = true
+                }
+            }
+        })
+    }
 
 }

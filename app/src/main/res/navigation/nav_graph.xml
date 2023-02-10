@@ -35,5 +35,8 @@
         <action
             android:id="@+id/action_savedNewsFragment_to_newsListFragment"
             app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_savedNewsFragment_to_readNewsFragment"
+            app:destination="@id/readNewsFragment" />
     </fragment>
 </navigation>

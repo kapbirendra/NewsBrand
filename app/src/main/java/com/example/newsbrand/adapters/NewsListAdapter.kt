@@ -67,7 +67,6 @@ class NewsListAdapter (
             ,dummySource,artPosition.title,artPosition.url,artPosition.urlToImage)
 
         holder.notSavedBookMark.setOnClickListener {
-
                 savedFragmentViewModel.addArticlesFromVm(dummyData)
                 Toast.makeText(context, "added..", Toast.LENGTH_SHORT).show()
         }

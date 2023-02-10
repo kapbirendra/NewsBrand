@@ -71,9 +71,9 @@ class NewsListFragment : Fragment(), NewsOnclick {
     }
 
     override fun newClick(position: Int) {
-
         val bundle = Bundle()
         bundle.putInt("position",position)
         Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_readNewsFragment,bundle)
+
     }
 }
