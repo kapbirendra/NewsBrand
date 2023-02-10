@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsbrand.repository.SavedArticleRepository
+import com.example.newsbrand.response.Article
 import com.example.newsbrand.response.saved_response.SavedArticle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

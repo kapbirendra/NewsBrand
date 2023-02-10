@@ -21,7 +21,8 @@
         android:id="@+id/readNewsFragment"
         android:name="com.example.newsbrand.fragments.ReadNewsFragment"
         android:label="fragment_read_news"
-        tools:layout="@layout/fragment_read_news" >
+        tools:layout="@layout/fragment_read_news"
+        >
         <action
             android:id="@+id/action_readNewsFragment_to_newsListFragment"
             app:destination="@id/newsListFragment" />

@@ -1,6 +1,7 @@
 package com.example.newsbrand.repository
 
 import androidx.lifecycle.LiveData
+import com.example.newsbrand.response.Article
 import com.example.newsbrand.response.saved_response.SavedArticle
 import com.example.newsbrand.rooms.SavedDao
 import dagger.hilt.android.scopes.ActivityScoped
@@ -19,4 +20,5 @@ class SavedArticleRepository @Inject constructor (private val savedDao: SavedDao
     suspend fun deleteArticle(saved: SavedArticle){
         savedDao.deleteNews(saved)
     }
+
 }

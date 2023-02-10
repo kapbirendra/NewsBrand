@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -33,6 +34,8 @@ class NewsListFragment : Fragment(), NewsOnclick {
 
     lateinit var readNewsViewModel: ReadNewsViewModel
 
+    lateinit var adapter: NewsListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +49,8 @@ class NewsListFragment : Fragment(), NewsOnclick {
         readNewsViewModel = ViewModelProvider(this)[ReadNewsViewModel::class.java]
         binding.recyclerViewNLF.layoutManager = LinearLayoutManager(requireContext())
         mainViewModel.publicLivedata.observe(requireActivity()){
-            binding.recyclerViewNLF.adapter = NewsListAdapter(it.articles,this,savedFragmentViewModel)
+            adapter = NewsListAdapter(it.articles,this,savedFragmentViewModel)
+            binding.recyclerViewNLF.adapter = adapter
 
         }
         binding.saveButtonNLF.setOnClickListener {
@@ -54,13 +58,26 @@ class NewsListFragment : Fragment(), NewsOnclick {
         }
 
 
+        binding.searchNewsNLF.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+        })
     }
 
     override fun newClick(position: Int) {
-        mainViewModel.publicLivedata.observe(requireActivity()){
-            readNewsViewModel.setReadData("birendrra")
-            Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_readNewsFragment)
-
-        }
+//        mainViewModel.publicLivedata.observe(requireActivity()){
+//            readNewsViewModel.setReadData(position)
+//            Toast.makeText(requireContext(), "$position", Toast.LENGTH_SHORT).show()
+////            findNavController().navigate(R.id.action_newsListFragment_to_readNewsFragment)
+//        }
+        val bundle = Bundle()
+        bundle.putInt("position",position)
+        Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_readNewsFragment,bundle)
     }
 }
