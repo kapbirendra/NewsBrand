@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsbrand.api.NewsOnclick
@@ -16,14 +17,15 @@ import com.example.newsbrand.viewmodel.SavedFragmentViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class NewsListAdapter (
+class NewsListAdapter(
     private val articles: List<Article>,
     private val newsOnclick: NewsOnclick,
     private val savedFragmentViewModel: SavedFragmentViewModel
-) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>(),Filterable {
+) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>(), Filterable {
     lateinit var binding: NewListAdapterBinding
     private lateinit var context: Context
     private var articleTemp = mutableListOf<Article>()
+
     init {
         articleTemp.addAll(articles)
     }
@@ -35,6 +37,7 @@ class NewsListAdapter (
         val newsImage: ImageView = binding.imageViewNLA
         val notSavedBookMark: ImageView = binding.notSavedBookmark
         val clickNewsLayout: ConstraintLayout = binding.layoutNewsListNLA
+
         init {
             binding.root.setOnClickListener {
                 newsOnclick.newClick(adapterPosition)
@@ -62,27 +65,52 @@ class NewsListAdapter (
         Glide.with(context).load(articleTemp[position].urlToImage).into(holder.newsImage)
 
         val artPosition = articles[position]
-        val dummySource = SourceSaved(artPosition.source.id,artPosition.source.name)
-        val dummyData = SavedArticle(artPosition.id,artPosition.author,artPosition.content,artPosition.description,artPosition.publishedAt
-            ,dummySource,artPosition.title,artPosition.url,artPosition.urlToImage)
+        val dummySource = SourceSaved(artPosition.source.id, artPosition.source.name)
+        val dummyData = SavedArticle(
+            artPosition.id,
+            artPosition.author,
+            artPosition.content,
+            artPosition.description,
+            artPosition.publishedAt,
+            dummySource,
+            artPosition.title,
+            artPosition.url,
+            artPosition.urlToImage
+        )
+
+        //saveList is for saving the all the available data from savedList
+        val saveList = mutableListOf<String>()
+        savedFragmentViewModel.readSavedArticleFromVm().observeForever {
+            for (i in it){
+                saveList.add(i.title!!)
+            }
+        }
 
         holder.notSavedBookMark.setOnClickListener {
+//            checking data is already saved or not
+            if (dummyData.title !in saveList){
+                //if not saved then article will be added to saved list
                 savedFragmentViewModel.addArticlesFromVm(dummyData)
-                Toast.makeText(context, "added..", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "News save...", Toast.LENGTH_SHORT).show()
+            }else Toast.makeText(context, "News exist...", Toast.LENGTH_SHORT).show()
         }
 
     }
 
+
+    //override the function for search filter
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()){
+                if (charSearch.isEmpty()) {
                     articleTemp = articles.toMutableList()
-                }else{
+                } else {
                     val resultList = ArrayList<Article>()
-                    for (row in articles){
-                        if (row.title!!.lowercase(Locale.ROOT).contains(charSearch.lowercase(Locale.ROOT))) {
+                    for (row in articles) {
+                        if (row.title!!.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT))
+                        ) {
                             resultList.add(row)
                         }
                     }

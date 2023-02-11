@@ -54,7 +54,7 @@ class ReadNewsFragment : Fragment() {
             Glide.with(this).load(it.articles[position].urlToImage).into(bindingFragmentReadNewsBinding.imageView)
         }
 
-        setUpBackPressed()
+//        setUpBackPressed()
 
         bindingFragmentReadNewsBinding.backButtonRF.setOnClickListener {
             requireActivity().onBackPressed()
