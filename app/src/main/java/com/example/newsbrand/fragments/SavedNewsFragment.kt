@@ -38,7 +38,7 @@ class SavedNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.recyclerViewSF.layoutManager = LinearLayoutManager(requireContext())
         savedNewsFragmentViewModel.readSavedArticleFromVm().observe(requireActivity()){
-            adapter = SavedNewsAdapter(it,requireContext() )
+            adapter = SavedNewsAdapter(it,requireContext(),savedNewsFragmentViewModel )
             binding.recyclerViewSF.adapter = adapter
         }
 

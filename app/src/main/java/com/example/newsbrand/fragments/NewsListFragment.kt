@@ -46,10 +46,17 @@ class NewsListFragment : Fragment(), NewsOnclick {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+        val saveList = mutableListOf<String>()
+        savedFragmentViewModel.readSavedArticleFromVm().observe(requireActivity()) {
+            for (i in it){
+                saveList.add(i.title!!)
+            }
+        }
+
         readNewsViewModel = ViewModelProvider(this)[ReadNewsViewModel::class.java]
         binding.recyclerViewNLF.layoutManager = LinearLayoutManager(requireContext())
         mainViewModel.publicLivedata.observe(requireActivity()){
-            adapter = NewsListAdapter(it.articles,this,savedFragmentViewModel)
+            adapter = NewsListAdapter(it.articles,this,savedFragmentViewModel,saveList)
             binding.recyclerViewNLF.adapter = adapter
 
         }

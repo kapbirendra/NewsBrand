@@ -1,32 +1,28 @@
 package com.example.newsbrand.adapters
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsbrand.R
-import com.example.newsbrand.fragments.SavedNewsFragment
-import com.example.newsbrand.response.Article
 import com.example.newsbrand.response.saved_response.SavedArticle
+import com.example.newsbrand.viewmodel.SavedFragmentViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SavedNewsAdapter(private val savedArticles: List<SavedArticle>,private val context:Context) :RecyclerView.Adapter<SavedNewsAdapter.MyViewHolder>(),Filterable {
+class SavedNewsAdapter(
+    private val savedArticles: List<SavedArticle>,
+    private val context: Context,
+    private val savedNewsFragmentViewModel: SavedFragmentViewModel
+) :RecyclerView.Adapter<SavedNewsAdapter.MyViewHolder>(),Filterable {
 
     private var articleTemp = mutableListOf<SavedArticle>()
     init {
@@ -38,6 +34,7 @@ class SavedNewsAdapter(private val savedArticles: List<SavedArticle>,private val
         val publishedAt: TextView = view.findViewById(R.id.news_date_SFA)
         val newsImage: ImageView = view.findViewById(R.id.imageViewSFA)
         val layout:LinearLayout = view.findViewById(R.id.readFullNews_SLA)
+        val deleteNews:ImageButton = view.findViewById(  R.id.delete_Saved)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -54,8 +51,9 @@ class SavedNewsAdapter(private val savedArticles: List<SavedArticle>,private val
         holder.publishedAt.text = articleTemp[position].publishedAt!!.substring(1,10)
         Glide.with(context).load(articleTemp[position].urlToImage).into(holder.newsImage)
 
-        holder.layout.setOnClickListener {
-
+        holder.deleteNews.setOnClickListener {
+            savedNewsFragmentViewModel.deleteArticleFromVm(savedArticles[position])
+            articleTemp.removeAt(position)
         }
 
     }

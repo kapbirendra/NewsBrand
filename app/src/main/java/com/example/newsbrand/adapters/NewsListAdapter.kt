@@ -1,7 +1,9 @@
 package com.example.newsbrand.adapters
 
 import android.content.Context
+import android.opengl.Visibility
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,13 +16,15 @@ import com.example.newsbrand.response.Article
 import com.example.newsbrand.response.saved_response.SavedArticle
 import com.example.newsbrand.response.saved_response.SourceSaved
 import com.example.newsbrand.viewmodel.SavedFragmentViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import kotlin.collections.ArrayList
 
 class NewsListAdapter(
     private val articles: List<Article>,
     private val newsOnclick: NewsOnclick,
-    private val savedFragmentViewModel: SavedFragmentViewModel
+    private val savedFragmentViewModel: SavedFragmentViewModel,
+    private val saveList:MutableList<String>
 ) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>(), Filterable {
     lateinit var binding: NewListAdapterBinding
     private lateinit var context: Context
@@ -36,6 +40,7 @@ class NewsListAdapter(
         val newsDate: TextView = binding.newsDateNLA
         val newsImage: ImageView = binding.imageViewNLA
         val notSavedBookMark: ImageView = binding.notSavedBookmark
+        val savedBookMark: ImageView = binding.savedBookmark
         val clickNewsLayout: ConstraintLayout = binding.layoutNewsListNLA
 
         init {
@@ -57,12 +62,19 @@ class NewsListAdapter(
     override fun getItemCount(): Int {
         return articleTemp.size
     }
+    //saveList is for saving the all the available data from savedList
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.newsHeading.text = articleTemp[position].title
         holder.newsDescription.text = articleTemp[position].description
         holder.newsDate.text = articleTemp[position].publishedAt!!.substring(0, 10)
         Glide.with(context).load(articleTemp[position].urlToImage).into(holder.newsImage)
+
+
+        if (articles[position].title in saveList){
+            holder.savedBookMark.visibility = View.VISIBLE
+        }
+
 
         val artPosition = articles[position]
         val dummySource = SourceSaved(artPosition.source.id, artPosition.source.name)
@@ -78,21 +90,18 @@ class NewsListAdapter(
             artPosition.urlToImage
         )
 
-        //saveList is for saving the all the available data from savedList
-        val saveList = mutableListOf<String>()
-        savedFragmentViewModel.readSavedArticleFromVm().observeForever {
-            for (i in it){
-                saveList.add(i.title!!)
-            }
-        }
-
         holder.notSavedBookMark.setOnClickListener {
 //            checking data is already saved or not
+
             if (dummyData.title !in saveList){
                 //if not saved then article will be added to saved list
                 savedFragmentViewModel.addArticlesFromVm(dummyData)
-                Toast.makeText(context, "News save...", Toast.LENGTH_SHORT).show()
-            }else Toast.makeText(context, "News exist...", Toast.LENGTH_SHORT).show()
+                holder.savedBookMark.visibility = View.VISIBLE
+                Snackbar.make(it,"This News has been added to save list",Snackbar.LENGTH_SHORT).show()
+            }else {
+                Snackbar.make(it,"News already Existed to save list",Snackbar.LENGTH_SHORT).show()
+
+            }
         }
 
     }

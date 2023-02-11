@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageViewSFA"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:scaleType="centerCrop"
         android:layout_margin="5dp"
         android:padding="5dp"
@@ -29,9 +29,9 @@
             android:layout_height="wrap_content"
             android:text="@string/dummy_string"
             android:textColor="@color/black"
+            android:ellipsize="end"
             android:maxLines="2"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textSize="22sp" />
 
 
         <TextView
@@ -43,6 +43,12 @@
             android:textSize="18sp" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/delete_Saved"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/baseline_delete_24"/>
 
 
 </LinearLayout>
