@@ -3,6 +3,7 @@ package com.example.newsbrand.response.saved_response
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "saved_table",indices =  [Index(value = ["id"], unique = true)])
 data class SavedArticle(
@@ -16,4 +17,4 @@ data class SavedArticle(
     val title: String?,
     val url: String?,
     val urlToImage: String?
-)
+): Serializable

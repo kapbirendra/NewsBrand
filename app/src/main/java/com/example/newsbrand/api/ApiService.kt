@@ -1,9 +1,7 @@
 package com.example.newsbrand.api
 
-import com.example.newsbrand.response.Article
-import com.example.newsbrand.response.NewsData
+import com.example.newsbrand.response.news_module.NewsData
 import com.example.newsbrand.utils.ConstantValues.API_KEY
-import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

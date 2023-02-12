@@ -2,15 +2,10 @@ package com.example.newsbrand.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.TypeConverters
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.newsbrand.api.ApiService
-import com.example.newsbrand.fragments.NewsListFragment
 import com.example.newsbrand.repository.ApiRepository
-import com.example.newsbrand.rooms.NewsDao
-import com.example.newsbrand.rooms.RoomOfflineDb
-import com.example.newsbrand.rooms.converter.ConverterSource
+import com.example.newsbrand.rooms.offline.NewsDao
+import com.example.newsbrand.rooms.offline.RoomOfflineDb
 import com.example.newsbrand.utils.ConstantValues.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -19,7 +14,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module

@@ -3,21 +3,17 @@ package com.example.newsbrand.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.newsbrand.response.Article
-import com.example.newsbrand.rooms.NewsDao
-import kotlinx.coroutines.launch
-import java.text.FieldPosition
+import com.example.newsbrand.response.news_module.Article
 import javax.inject.Inject
 
 class ReadNewsViewModel @Inject constructor():ViewModel() {
 
-     private val readLiveData = MutableLiveData<Int>()
+     private val readLiveData = MutableLiveData<Article>()
 
-    val publicReadLiveData:LiveData<Int>
+    val publicReadLiveData:LiveData<Article>
         get() = readLiveData
 
-    fun setReadData(articlePosition: Int){
+    fun setReadData(articlePosition: Article){
         readLiveData.postValue(articlePosition)
     }
 

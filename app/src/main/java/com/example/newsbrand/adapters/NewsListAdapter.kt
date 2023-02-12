@@ -1,18 +1,16 @@
 package com.example.newsbrand.adapters
 
 import android.content.Context
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsbrand.api.NewsOnclick
 import com.example.newsbrand.databinding.NewListAdapterBinding
-import com.example.newsbrand.response.Article
+import com.example.newsbrand.response.news_module.Article
 import com.example.newsbrand.response.saved_response.SavedArticle
 import com.example.newsbrand.response.saved_response.SourceSaved
 import com.example.newsbrand.viewmodel.SavedFragmentViewModel
@@ -32,6 +30,7 @@ class NewsListAdapter(
 
     init {
         articleTemp.addAll(articles)
+
     }
 
     inner class MyViewHolder() : RecyclerView.ViewHolder(binding.root) {
@@ -41,11 +40,10 @@ class NewsListAdapter(
         val newsImage: ImageView = binding.imageViewNLA
         val notSavedBookMark: ImageView = binding.notSavedBookmark
         val savedBookMark: ImageView = binding.savedBookmark
-        val clickNewsLayout: ConstraintLayout = binding.layoutNewsListNLA
 
         init {
             binding.root.setOnClickListener {
-                newsOnclick.newClick(adapterPosition)
+                newsOnclick.newClick(articleTemp[adapterPosition])
             }
 
         }

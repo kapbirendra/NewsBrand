@@ -1,4 +1,4 @@
-package com.example.newsbrand.rooms
+package com.example.newsbrand.rooms.saved
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

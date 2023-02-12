@@ -1,4 +1,4 @@
-package com.example.newsbrand.rooms
+package com.example.newsbrand.rooms.saved
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -9,5 +9,5 @@ import com.example.newsbrand.rooms.converter.ConverterSavedSource
 @Database(entities = [SavedArticle::class], version = 2)
 @TypeConverters(ConverterSavedSource::class)
 abstract class SavedArticleDb:RoomDatabase() {
-    abstract fun savedArticleFromDb():SavedDao
+    abstract fun savedArticleFromDb(): SavedDao
 }

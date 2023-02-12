@@ -2,13 +2,9 @@ package com.example.newsbrand.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.newsbrand.api.ApiService
-import com.example.newsbrand.repository.ApiRepository
 import com.example.newsbrand.repository.SavedArticleRepository
-import com.example.newsbrand.rooms.NewsDao
-import com.example.newsbrand.rooms.RoomOfflineDb
-import com.example.newsbrand.rooms.SavedArticleDb
-import com.example.newsbrand.rooms.SavedDao
+import com.example.newsbrand.rooms.saved.SavedArticleDb
+import com.example.newsbrand.rooms.saved.SavedDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +19,7 @@ class SavedModule {
     @Provides
     @Singleton
     fun provideSaveDatabase(@ApplicationContext context: Context): SavedArticleDb =
-        Room.databaseBuilder(context,SavedArticleDb::class.java,"saved_table")
+        Room.databaseBuilder(context, SavedArticleDb::class.java,"saved_table")
             .fallbackToDestructiveMigration()
             .build()
 

@@ -1,8 +1,7 @@
-package com.example.newsbrand.rooms
+package com.example.newsbrand.rooms.offline
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.newsbrand.response.Article
+import com.example.newsbrand.response.news_module.Article
 
 @Dao()
 interface NewsDao {

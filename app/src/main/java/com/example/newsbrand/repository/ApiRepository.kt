@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.newsbrand.api.ApiService
-import com.example.newsbrand.response.NewsData
-import com.example.newsbrand.rooms.NewsDao
+import com.example.newsbrand.response.news_module.NewsData
+import com.example.newsbrand.rooms.offline.NewsDao
 import com.example.newsbrand.utils.InternetCheck
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
 @ActivityScoped
-class ApiRepository @Inject constructor(private val newsDao: NewsDao,private val apiService: ApiService,private val context:Context) {
+class ApiRepository @Inject constructor(private val newsDao: NewsDao, private val apiService: ApiService, private val context:Context) {
 
     private val quotesLiveData = MutableLiveData<NewsData>()
 

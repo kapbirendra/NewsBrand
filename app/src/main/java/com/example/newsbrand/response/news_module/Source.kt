@@ -1,4 +1,4 @@
-package com.example.newsbrand.response
+package com.example.newsbrand.response.news_module
 
 import androidx.room.Entity
 

@@ -1,8 +1,9 @@
 package com.example.newsbrand.api
 
-interface NewsOnclick {
+import com.example.newsbrand.response.news_module.Article
 
-    fun newClick(position:Int)
+interface NewsOnclick {
+    fun newClick(position:Article)
 }
 
 

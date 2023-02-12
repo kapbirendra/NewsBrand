@@ -1,8 +1,7 @@
-package com.example.newsbrand.rooms
+package com.example.newsbrand.rooms.offline
 
 import androidx.room.*
-import com.example.newsbrand.response.Article
-import com.example.newsbrand.rooms.converter.ConverterSavedSource
+import com.example.newsbrand.response.news_module.Article
 import com.example.newsbrand.rooms.converter.ConverterSource
 
 @Database(entities = [Article::class], version = 2)

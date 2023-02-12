@@ -1,6 +1,4 @@
-package com.example.newsbrand.response
-
-import androidx.room.Entity
+package com.example.newsbrand.response.news_module
 
 data class NewsData(
     val status: String,

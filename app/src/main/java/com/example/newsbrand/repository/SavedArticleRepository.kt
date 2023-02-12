@@ -1,9 +1,8 @@
 package com.example.newsbrand.repository
 
 import androidx.lifecycle.LiveData
-import com.example.newsbrand.response.Article
 import com.example.newsbrand.response.saved_response.SavedArticle
-import com.example.newsbrand.rooms.SavedDao
+import com.example.newsbrand.rooms.saved.SavedDao
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
