@@ -3,7 +3,7 @@ package com.example.newsbrand.rooms.offline
 import androidx.room.*
 import com.example.newsbrand.response.news_module.Article
 
-@Dao()
+@Dao
 interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

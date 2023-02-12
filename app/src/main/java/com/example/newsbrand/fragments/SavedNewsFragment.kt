@@ -21,14 +21,14 @@ class SavedNewsFragment : Fragment() {
 
     lateinit var adapter: SavedNewsAdapter
 
-    lateinit var binding:FragmentSavedNewsBinding
+    private lateinit var binding:FragmentSavedNewsBinding
     @Inject
     lateinit var savedNewsFragmentViewModel: SavedFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSavedNewsBinding.inflate(layoutInflater, container, false)
 
@@ -59,7 +59,7 @@ class SavedNewsFragment : Fragment() {
 
     }
 
-    private fun setUpBackPressed() {
+    private fun /**/setUpBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(false){
             override fun handleOnBackPressed() {
                 if (isEnabled){

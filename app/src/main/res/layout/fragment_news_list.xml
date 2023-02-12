@@ -10,29 +10,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="23dp"
+        android:layout_margin="@dimen/margin_23dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="@dimen/padding_10dp"
             >
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:textSize="23sp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text="NewsBreeze"/>-->
-
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="fitStart"
                 android:src="@drawable/app_icon"
+                android:contentDescription="@string/dummy_string"
                 />
 
             <ImageView
@@ -41,6 +34,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="fitEnd"
+                android:contentDescription="@string/dummy_string"
                 android:src="@drawable/baseline_bookmark_24"/>
 
         </LinearLayout>
@@ -50,15 +44,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
-            android:background="@drawable/search_view_background"
-            android:padding="4dp"
+            android:background="@drawable/costome_cardview"
+            android:padding="@dimen/padding_5dp"
             android:queryBackground="@null"
-            android:queryHint="Search" />
+            android:queryHint="@string/search_hint" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_NLF"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/margin_10dp"
             android:layout_height="match_parent"/>
 
 

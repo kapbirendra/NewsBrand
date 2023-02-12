@@ -1,11 +1,11 @@
 package com.example.newsbrand.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsbrand.api.NewsOnclick
@@ -33,7 +33,7 @@ class NewsListAdapter(
 
     }
 
-    inner class MyViewHolder() : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder: RecyclerView.ViewHolder(binding.root) {
         val newsHeading: TextView = binding.newsHeadingNLA
         val newsDescription: TextView = binding.newDescNLA
         val newsDate: TextView = binding.newsDateNLA
@@ -110,8 +110,8 @@ class NewsListAdapter(
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    articleTemp = articles.toMutableList()
+                articleTemp = if (charSearch.isEmpty()) {
+                    articles.toMutableList()
                 } else {
                     val resultList = ArrayList<Article>()
                     for (row in articles) {
@@ -121,20 +121,24 @@ class NewsListAdapter(
                             resultList.add(row)
                         }
                     }
-                    articleTemp = resultList
+                    resultList
                 }
                 val filterResult = FilterResults()
                 filterResult.values = articleTemp
                 return filterResult
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                articleTemp = results?.values as kotlin.collections.ArrayList<Article>
+                articleTemp = results?.values as ArrayList<Article>
                 notifyDataSetChanged()
             }
 
         }
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 }

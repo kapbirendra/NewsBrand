@@ -11,7 +11,7 @@
         android:id="@+id/card_view_NLA"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/corner_radius_16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:contentDescription="@string/dummy_string"
                 android:src="@drawable/dummy_image"
                 />
 
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:padding="10dp"
+                android:contentDescription="@string/dummy_string"
                 android:src="@drawable/bookmark_border_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:padding="10dp"
+                android:padding="@dimen/padding_10dp"
+                android:contentDescription="@string/dummy_string"
                 android:visibility="invisible"
                 android:src="@drawable/baseline_bookmark_24"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,8 +72,8 @@
             android:layout_height="wrap_content"
             android:text="@string/dummy_string"
             android:textColor="@color/black"
-            android:textSize="22sp"
-            android:layout_marginTop="5dp"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="@dimen/margin_5dp"
             android:textStyle="bold"/>
 
         <TextView
@@ -82,13 +85,13 @@
             android:ellipsize="end"
             android:layout_marginTop="5dp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_small"
             />
         <TextView
             android:id="@+id/news_date_NLA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size_medium"
             android:layout_marginTop="5dp"
             android:text="@string/dummy_string"
             android:textColor="@color/date_color"/>

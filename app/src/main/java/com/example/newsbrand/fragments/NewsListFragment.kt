@@ -1,17 +1,13 @@
 package com.example.newsbrand.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsbrand.R
 import com.example.newsbrand.adapters.NewsListAdapter
@@ -26,21 +22,21 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsListFragment : Fragment(), NewsOnclick {
-    lateinit var binding: FragmentNewsListBinding
+    private lateinit var binding: FragmentNewsListBinding
     @Inject
     lateinit var mainViewModel: MainViewModel
 
     @Inject
     lateinit var savedFragmentViewModel: SavedFragmentViewModel
 
-    lateinit var readNewsViewModel: ReadNewsViewModel
+    private lateinit var readNewsViewModel: ReadNewsViewModel
 
     lateinit var adapter: NewsListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentNewsListBinding.inflate(layoutInflater, container, false)
         return binding.root

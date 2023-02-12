@@ -3,4 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dummy_string">Dummy String......</string>
+
+<!--    samples of sizes-->
+    <string name="small_size_text"> </string>
+    <string name="medium_size_text"> </string>
+    <string name="large_size_text"> </string>
+    <string name="extraLarge_size_text"> </string>
+    <string name="padding_10dp">10dp</string>
+    <string name="margin_10dp">10dp</string>
+    <string name="saved">Saved</string>
+    <string name="search_hint">Search</string>
 </resources>

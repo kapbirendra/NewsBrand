@@ -23,11 +23,11 @@ class ReadNewsFragment : Fragment() {
     @Inject
     lateinit var readNewsViewModel: ReadNewsViewModel
 
-    lateinit var bindingFragmentReadNewsBinding: FragmentReadNewsBinding
+    private lateinit var bindingFragmentReadNewsBinding: FragmentReadNewsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         bindingFragmentReadNewsBinding =
             FragmentReadNewsBinding.inflate(layoutInflater, container, false)
         readNewsViewModel = ViewModelProvider(this)[ReadNewsViewModel::class.java]
@@ -69,7 +69,7 @@ class ReadNewsFragment : Fragment() {
 
     }
 
-    private fun setUpBackPressed() {
+    private fun /**/setUpBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(object :
             OnBackPressedCallback(false) {
             override fun handleOnBackPressed() {

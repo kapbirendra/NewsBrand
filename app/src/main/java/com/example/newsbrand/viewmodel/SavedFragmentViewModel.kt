@@ -22,17 +22,9 @@ class SavedFragmentViewModel @Inject constructor(private val savedArticleReposit
             savedArticleRepository.deleteArticle(savedArticle)
         }
     }
-    fun updateArticleFromMvm(savedArticle: SavedArticle){
-        viewModelScope.launch(Dispatchers.IO) {
-            savedArticleRepository.updateSavedNews(savedArticle)
-        }
-    }
 
-    fun deleteAllArticle(){
-        viewModelScope.launch (Dispatchers.IO){
-            savedArticleRepository.deleteAllArticle()
-        }
-    }
+
+
 
     fun readSavedArticleFromVm(): LiveData<List<SavedArticle>> {
         return savedArticleRepository.readSavedData()

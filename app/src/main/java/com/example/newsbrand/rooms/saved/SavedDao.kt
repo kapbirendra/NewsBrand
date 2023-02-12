@@ -3,7 +3,6 @@ package com.example.newsbrand.rooms.saved
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.newsbrand.response.saved_response.SavedArticle
-import retrofit2.http.DELETE
 
 @Dao
 interface SavedDao {
