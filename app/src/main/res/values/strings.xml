@@ -13,4 +13,7 @@
     <string name="margin_10dp">10dp</string>
     <string name="saved">Saved</string>
     <string name="search_hint">Search</string>
+    <string name="user_name_hint">user name...</string>
+    <string name="password_hint">password..</string>
+    <string name="login">login</string>
 </resources>
