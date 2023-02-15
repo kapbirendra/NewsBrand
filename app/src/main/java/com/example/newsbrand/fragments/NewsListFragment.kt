@@ -34,7 +34,6 @@ class NewsListFragment : Fragment(), NewsOnclick {
 
     @Inject
     lateinit var savedFragmentViewModel: SavedFragmentViewModel
-//    lateinit var sharedPreferences: SharedPreferences
 @Inject
 lateinit var session:Session
     private lateinit var readNewsViewModel: ReadNewsViewModel
@@ -45,15 +44,12 @@ lateinit var session:Session
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentNewsListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
-//        sharedPreferences = requireActivity().getSharedPreferences ("loginId", AppCompatActivity.MODE_PRIVATE)
         val saveList = mutableListOf<String>()
-        //this is fetching data of saved lsit and passing to adapter to check available news are exist or not
         savedFragmentViewModel.readSavedArticleFromVm().observe(requireActivity()) {
             for (i in it){
                 saveList.add(i.title!!)
@@ -71,8 +67,6 @@ lateinit var session:Session
             Navigation.findNavController(binding.root).navigate(R.id.action_newsListFragment_to_savedNewsFragment)
         }
         binding.logoutButton.setOnClickListener {
-//            val editor = sharedPreferences.edit()
-//           val session = Session(requireActivity())
             session.setTheValue("out")
             val intent = Intent(requireActivity(),LoginActivity::class.java)
             startActivity(intent)
